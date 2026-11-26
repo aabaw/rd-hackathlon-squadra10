@@ -18,7 +18,10 @@ html,body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-f
 .credits{max-width:1180px;margin:8px auto 40px;padding:0 24px;font-size:12px;line-height:1.6;color:var(--t3);text-align:center}
 .logo i{width:30px;height:30px;border-radius:50%;background:conic-gradient(from 200deg,var(--acc),#ffb38a,var(--acc));display:block}
 .pills{display:flex;background:var(--c1);border-radius:999px;padding:4px}
-.pills span{padding:8px 16px;border-radius:999px;font-size:13px;color:var(--t2)}
+.pills span{padding:8px 16px;border-radius:999px;font-size:13px;color:var(--t2);cursor:pointer}
+.pills span:hover{color:var(--t1)}
+.qr{font-size:12px;color:var(--acc);white-space:nowrap;margin-left:6px}
+#secR,#secM{scroll-margin-top:90px}
 .pills span.on{background:var(--t1);color:#000;font-weight:500}
 .search{flex:1;min-width:180px;display:flex;align-items:center;gap:10px;background:var(--c1);border-radius:999px;padding:0 16px;height:42px}
 .search input{flex:1;background:none;border:0;outline:0;color:var(--t1);font:14px var(--sans)}
@@ -163,8 +166,8 @@ input[type=range]{accent-color:var(--acc);width:120px}
   <nav class="nav">
     <div class="logo" id="logo"><i></i>linkin prompt</div>
     <span class="traccia">Traccia 1 · With or Without You</span>
-    <div class="pills"><span class="on">Oggi</span><span>Riunioni</span><span>Email</span></div>
-    <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b6b70" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" placeholder="Cerca in posta e riunioni"></label>
+    <div class="pills"><span class="on" data-v="top">Oggi</span><span data-v="secR">Riunioni</span><span data-v="secM">Email</span></div>
+    <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b6b70" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" placeholder="Cerca una persona o una riunione"><small id="qr" class="qr"></small></label>
     <a class="chip" href="/" target="_top" title="Cambia modello o inserisci la tua chiave API" style="text-decoration:none"><span class="live"></span><span id="mod"></span><span style="color:var(--acc)">· cambia l’AI ⚙</span></a>
     <div class="av" style="background:linear-gradient(135deg,#ffd0b8,#ff6b2c)" id="me"></div>
   </nav>
@@ -194,10 +197,10 @@ input[type=range]{accent-color:var(--acc);width:120px}
     <div id="bars"></div>
   </section>
 
-  <div class="sec"><h2>Riunioni<small id="nR"></small></h2><button class="f on" data-f="tutte">Tutte</button><button class="f" data-f="te">Da approvare</button><button class="f" data-f="lib">Tolte dalla tua agenda</button></div>
+  <div class="sec" id="secR"><h2>Riunioni<small id="nR"></small></h2><button class="f on" data-f="tutte">Tutte</button><button class="f" data-f="te">Da approvare</button><button class="f" data-f="lib">Tolte dalla tua agenda</button></div>
   <div class="grid" id="meet"></div>
 
-  <div class="sec"><h2>Email sulle riunioni<small id="nM"></small></h2><button class="f on" data-p="ora">Adesso</button><button class="f" data-p="dopo">Più tardi</button><button class="f" data-p="tutte">Tutte</button></div>
+  <div class="sec" id="secM"><h2>Email sulle riunioni<small id="nM"></small></h2><button class="f on" data-p="ora">Adesso</button><button class="f" data-p="dopo">Più tardi</button><button class="f" data-p="tutte">Tutte</button></div>
   <div class="grid" id="mail"></div>
 
   <div class="tri">
@@ -307,7 +310,7 @@ function riunioni(){
     const dele=i.azione==='DELEGA'?`<span class="dchip">${avatar(i.delegato.nome,'xs')}${esc(i.delegato.nome.split(' ')[0])}</span>`:'';
     const agenda=i.azione==='RILANCIA'&&i.variante==='agenda';
     const tags=`<span class="tag ${lib(i)?'acc':'w'}">${agenda?'Chiede l’agenda':LAB[i.azione]}</span>`+(i.azione==='RILANCIA'&&!agenda?`<span class="tag">${esc(i.proposta)}</span>`:'')+dele;
-    return `<div class="card mcard" data-id="${i.id}" data-q="${esc((i.titolo+' '+o.nome).toLowerCase())}">
+    return `<div class="card mcard" data-id="${i.id}" data-q="${esc([i.titolo,o.nome,(i.delegato||{}).nome||'',LAB[i.azione]||'',i.motivo||''].join(' ').toLowerCase())}">
       <div class="mtop">${avatar(o.nome,'big')}<div class="who"><b>${esc(o.nome)}</b>${GG[a.getDay()]} ${a.getDate()}/${a.getMonth()+1} · ${hm(a)}–${hm(b)}</div>
         <div class="ibtn"><span class="ic ${au?'ok':''}" title="${esc(st)}">✓</span><span class="ic" title="Bozza">✎</span></div></div>
       <div class="ttl">${esc(i.titolo)}</div>
@@ -354,7 +357,7 @@ function posta(){const ora=e=>e.ai.priorita>=4||e.sollecito;const vis=(fp==='tut
 $('#mail').innerHTML=vis.length?'':'<p style="color:var(--t3)">Niente da rimandare.</p>';if(vis.length)$('#mail').innerHTML=vis.map((e,k)=>{const m=e.mittente,d=data10(e.ai.scadenza);
   const tags=(e.ai.priorita>=5?'<span class="tag w">Subito</span>':e.ai.priorita===4?'<span class="tag">Oggi</span>':'')+(e.sollecito?`<span class="tag acc">aspetta da ${e.giorni} giorni</span>`:'')+(d?`<span class="tag">entro ${d.slice(8,10)}/${d.slice(5,7)}</span>`:'')+(e.bozza_invito?'<span class="tag acc">risposta già scritta</span>':'');
   const tasks=e.ai.tasks.map(t=>`<label class="task"><input type="checkbox"><span>${esc(t)}</span></label>`).join('');
-  return `<div class="card ${k===0?'hot':''}" data-q="${esc((e.oggetto+' '+m.nome).toLowerCase())}">
+  return `<div class="card ${k===0?'hot':''}" data-q="${esc([e.oggetto,m.nome,(e.ai||{}).riassunto||''].join(' ').toLowerCase())}">
     <div class="top">${foto(m.nome)?avatar(m.nome):`<div class="av" style="background:${k===0?'#140700':tinta(m.nome)};color:${k===0?'#ff6b2c':'#000'}">${ini(m.nome)}</div>`}<div class="who"><b>${esc(m.nome)}</b>${esc((m.ruolo||'').split(',')[0])}</div></div>
     <div class="ttl">${esc(e.oggetto)}</div><div class="tags">${tags}</div>
     <div class="more"><div class="why">${esc(e.ai.riassunto)}</div>${tasks}${e.bozza_invito?`<div class="bozza">${esc(e.bozza_invito)}</div><div class="btns"><button class="btn p" onclick="event.stopPropagation();this.disabled=true;this.textContent='Inviato ✓'">Approva e invia</button></div>`:''}</div></div>`}).join('');
@@ -366,7 +369,17 @@ document.querySelectorAll('.f[data-p]').forEach(b=>b.onclick=()=>{document.query
 const ch=R.meta.chiamate||[];
 const ANONIMO=R.meta.anonimizzazione;
 $('#stats').innerHTML=[['Modello AI',R.meta.modello],['Dove lavora l’AI',LOCALE?'sul portatile':(AZ?'su Azure, nel vostro spazio':'su internet: '+HOST)],['Cosa esce dal PC',LOCALE?'niente':(R.meta.anonimizzazione?'i testi, con nomi ed email nascosti':'i testi di email e inviti')],['Profondità di ragionamento',R.meta.ragionamento||'standard'],['Nomi nascosti prima dell’invio (GDPR)',R.meta.anonimizzazione?R.meta.anonimizzazione.entita+' nomi, aziende ed email':'—'],['Domande fatte all’AI',ch.length||'—'],['Tempo per risposta',ch.length?(ch.reduce((s,c)=>s+c.secondi,0)/ch.length).toFixed(1).replace('.',',')+' s':'—']].map(([a,b])=>`<div class="stat">${a}<b>${esc(b)}</b></div>`).join('');
-$('#q').addEventListener('input',e=>{const v=e.target.value.toLowerCase().trim();document.querySelectorAll('[data-q]').forEach(n=>n.classList.toggle('hide',v&&!n.dataset.q.includes(v)))});
+/* ricerca: filtra riunioni ed email, dice quante ne trova e porta al primo risultato */
+let tq=null;
+function filtra(scorri){const v=($('#q').value||'').toLowerCase().trim();let n=0,primo=null;
+  document.querySelectorAll('[data-q]').forEach(x=>{const ok=!v||x.dataset.q.includes(v);x.classList.toggle('hide',!ok);if(ok&&v){n++;primo=primo||x}});
+  $('#qr').textContent=v?(n?`${n} ${n===1?'trovata':'trovate'}`:'nessun risultato'):'';
+  if(scorri&&primo)primo.scrollIntoView({behavior:'smooth',block:'center'})}
+$('#q').addEventListener('input',()=>{filtra(false);clearTimeout(tq);tq=setTimeout(()=>filtra(true),600)});
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(tq);filtra(true)}if(e.key==='Escape'){e.target.value='';filtra(false)}});
+{const _r=riunioni,_p=posta;riunioni=function(){_r.apply(this,arguments);filtra(false)};posta=function(){_p.apply(this,arguments);filtra(false)}}
+document.querySelectorAll('.pills span').forEach(s=>s.onclick=()=>{document.querySelectorAll('.pills span').forEach(x=>x.classList.remove('on'));s.classList.add('on');
+  if(s.dataset.v==='top')window.scrollTo({top:0,behavior:'smooth'});else document.getElementById(s.dataset.v).scrollIntoView({behavior:'smooth',block:'start'})});
 
 /* ---- numero che sale + elica di particelle (D29): posta e calendario intrecciati ---- */
 (function(){if(location.search.includes('statico')){$('#ore').innerHTML=num(oreLib)+'<small>h</small>';return}   // ?statico: stato finale, per gli screenshot
