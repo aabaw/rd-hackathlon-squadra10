@@ -1,0 +1,982 @@
+{
+  "meta": {
+    "modello": "gemma-4-e4b-it-qat",
+    "server": "http://127.0.0.1:18234/v1",
+    "locale": true,
+    "anonimizzazione": {
+      "entita": 44,
+      "esempio": "Buongiorno, il rilascio di ieri sera ha bloccato i pagamenti online sul nostro portale. Abbiamo bisogno di un riscontro con causa e tempi di ripristino entro oggi alle 17:00. Cordiali saluti, [Persona 1]"
+    },
+    "fornitore": "LM Studio (locale)",
+    "ragionamento": "none",
+    "quando": "2026-11-26 12:09",
+    "secondi": 582.3,
+    "chiamate": [
+      {
+        "cosa": "classifica E1",
+        "secondi": 25.9,
+        "token_out": 141
+      },
+      {
+        "cosa": "classifica E2",
+        "secondi": 25.5,
+        "token_out": 144
+      },
+      {
+        "cosa": "classifica E3",
+        "secondi": 18.0,
+        "token_out": 89
+      },
+      {
+        "cosa": "classifica E4",
+        "secondi": 16.5,
+        "token_out": 86
+      },
+      {
+        "cosa": "classifica E5",
+        "secondi": 23.3,
+        "token_out": 123
+      },
+      {
+        "cosa": "classifica E6",
+        "secondi": 20.1,
+        "token_out": 108
+      },
+      {
+        "cosa": "classifica E7",
+        "secondi": 20.9,
+        "token_out": 118
+      },
+      {
+        "cosa": "classifica E8",
+        "secondi": 25.1,
+        "token_out": 142
+      },
+      {
+        "cosa": "invito da E6",
+        "secondi": 15.8,
+        "token_out": 83
+      },
+      {
+        "cosa": "analizza M1",
+        "secondi": 27.8,
+        "token_out": 130
+      },
+      {
+        "cosa": "bozza M1",
+        "secondi": 11.2,
+        "token_out": 54
+      },
+      {
+        "cosa": "analizza M2",
+        "secondi": 18.4,
+        "token_out": 120
+      },
+      {
+        "cosa": "bozza M2",
+        "secondi": 11.8,
+        "token_out": 87
+      },
+      {
+        "cosa": "bozza M2 (correzione)",
+        "secondi": 14.9,
+        "token_out": 74
+      },
+      {
+        "cosa": "analizza M3",
+        "secondi": 40.6,
+        "token_out": 143
+      },
+      {
+        "cosa": "bozza M3",
+        "secondi": 24.0,
+        "token_out": 95
+      },
+      {
+        "cosa": "analizza M4",
+        "secondi": 39.4,
+        "token_out": 153
+      },
+      {
+        "cosa": "bozza M4",
+        "secondi": 21.1,
+        "token_out": 103
+      },
+      {
+        "cosa": "analizza M5",
+        "secondi": 33.2,
+        "token_out": 111
+      },
+      {
+        "cosa": "bozza M5",
+        "secondi": 16.8,
+        "token_out": 75
+      },
+      {
+        "cosa": "analizza M6",
+        "secondi": 31.7,
+        "token_out": 148
+      },
+      {
+        "cosa": "bozza M6",
+        "secondi": 15.0,
+        "token_out": 77
+      },
+      {
+        "cosa": "analizza M7",
+        "secondi": 26.8,
+        "token_out": 119
+      },
+      {
+        "cosa": "bozza M7",
+        "secondi": 16.6,
+        "token_out": 74
+      },
+      {
+        "cosa": "bozza M7 (correzione)",
+        "secondi": 17.3,
+        "token_out": 73
+      },
+      {
+        "cosa": "sintesi newsletter",
+        "secondi": 24.8,
+        "token_out": 104
+      }
+    ]
+  },
+  "email": [
+    {
+      "id": "E1",
+      "da": "mario.arrigoni@nexa.example",
+      "data": "2026-11-26 08:12",
+      "oggetto": "Sintesi margini per il CdA",
+      "testo": "Ciao Marta, per il CdA di lunedì mi serve entro venerdì 28 novembre una sintesi di una pagina sui margini della Divisione Digital, con i tre progetti più a rischio e le azioni correttive. Grazie, Mario",
+      "_atteso": {
+        "categoria": "interno",
+        "priorita": 5
+      },
+      "mittente": {
+        "nome": "Mario Arrigoni",
+        "ruolo": "CEO",
+        "stakeholder": "ceo",
+        "reparto": "Direzione"
+      },
+      "ai": {
+        "categoria": "interno",
+        "priorita": 4,
+        "riassunto": "Richiesta del CEO per una sintesi di una pagina sui margini della Divisione Digital (inclusi i tre progetti a rischio e le azioni correttive) da presentare al CdA.",
+        "tasks": [
+          "Preparare la sintesi dei margini della Divisione Digital."
+        ],
+        "scadenza": "2026-11-28",
+        "richiesta_meeting": false,
+        "attende_risposta": true
+      },
+      "regola": "",
+      "sollecito": false,
+      "giorni": 0
+    },
+    {
+      "id": "E2",
+      "da": "p.sgualdino@orbis.example",
+      "data": "2026-11-26 07:55",
+      "oggetto": "URGENTE - pagamenti online bloccati dopo il rilascio",
+      "testo": "Buongiorno, il rilascio di ieri sera ha bloccato i pagamenti online sul nostro portale. Abbiamo bisogno di un riscontro con causa e tempi di ripristino entro oggi alle 17:00. Cordiali saluti, Pia Sgualdino",
+      "_atteso": {
+        "categoria": "urgente",
+        "priorita": 5
+      },
+      "mittente": {
+        "nome": "Pia Sgualdino",
+        "ruolo": "Account Director, Orbis S.p.A. (cliente top)",
+        "stakeholder": "cliente_strategico",
+        "reparto": "Cliente"
+      },
+      "ai": {
+        "categoria": "cliente",
+        "priorita": 5,
+        "riassunto": "Il rilascio di ieri sera ha bloccato i pagamenti online sul portale del cliente. Richiesta urgente di causa e tempi di ripristino entro oggi alle 17:00.",
+        "tasks": [
+          "Verificare lo stato dei pagamenti online dopo il rilascio."
+        ],
+        "scadenza": "2026-11-26",
+        "richiesta_meeting": false,
+        "attende_risposta": true
+      },
+      "regola": "",
+      "sollecito": false,
+      "giorni": 0
+    },
+    {
+      "id": "E3",
+      "da": "newsletter@digitalweekly.example",
+      "data": "2026-11-26 06:00",
+      "oggetto": "Digital Weekly: 5 trend AI per il 2027",
+      "testo": "Questa settimana: agenti AI nei processi aziendali, modelli locali per la privacy, regole europee sull'AI in arrivo, costi del cloud in calo, nuovi strumenti per sviluppatori.",
+      "_atteso": {
+        "categoria": "newsletter",
+        "priorita": 1
+      },
+      "mittente": {
+        "nome": "Digital Weekly",
+        "ruolo": "Newsletter",
+        "stakeholder": "esterno",
+        "reparto": "Esterno"
+      },
+      "ai": {
+        "categoria": "newsletter",
+        "priorita": 1,
+        "riassunto": "Newsletter di Azienda 4 sui 5 trend AI per il 2027.",
+        "tasks": [],
+        "scadenza": null,
+        "richiesta_meeting": false,
+        "attende_risposta": false
+      },
+      "regola": "",
+      "sollecito": false,
+      "giorni": 0
+    },
+    {
+      "id": "E4",
+      "da": "hr@nexa.example",
+      "data": "2026-11-25 17:30",
+      "oggetto": "Welfare 2027: nuove convenzioni",
+      "testo": "Dal 1 gennaio sono attive nuove convenzioni welfare: palestre, trasporto pubblico e buoni libri. Tutti i dettagli nel portale HR.",
+      "_atteso": {
+        "categoria": "newsletter",
+        "priorita": 1
+      },
+      "mittente": {
+        "nome": "HR Nexa",
+        "ruolo": "Risorse Umane",
+        "stakeholder": "collega",
+        "reparto": "HR"
+      },
+      "ai": {
+        "categoria": "newsletter",
+        "priorita": 1,
+        "riassunto": "Comunicazione sulle nuove convenzioni welfare attive dal 2027.",
+        "tasks": [],
+        "scadenza": null,
+        "richiesta_meeting": false,
+        "attende_risposta": false
+      },
+      "regola": "",
+      "sollecito": false,
+      "giorni": 1
+    },
+    {
+      "id": "E5",
+      "da": "luca.fallica@nexa.example",
+      "data": "2026-11-24 10:05",
+      "oggetto": "Re: stime fase 2 Orbis",
+      "testo": "Ciao Marta, ti avevo chiesto il 21 novembre le stime di effort per la fase 2 di Orbis. Senza quelle non posso chiudere il piano. Ci sono novità? Luca",
+      "_atteso": {
+        "categoria": "interno",
+        "priorita": 4
+      },
+      "mittente": {
+        "nome": "Luca Fallica",
+        "ruolo": "PMO",
+        "stakeholder": "collega",
+        "reparto": "Divisione Digital"
+      },
+      "ai": {
+        "categoria": "interno",
+        "priorita": 4,
+        "riassunto": "Richiesta di stime di effort per la fase 2 di Azienda 10 da parte di Persona 11.",
+        "tasks": [
+          "Fornire le stime di effort per la fase 2 di Azienda 10."
+        ],
+        "scadenza": null,
+        "richiesta_meeting": false,
+        "attende_risposta": true
+      },
+      "regola": "",
+      "sollecito": true,
+      "giorni": 2
+    },
+    {
+      "id": "E6",
+      "da": "p.sgualdino@orbis.example",
+      "data": "2026-11-26 09:10",
+      "oggetto": "Demo nuova dashboard",
+      "testo": "Buongiorno Marta, possiamo organizzare la prossima settimana una demo di 45 minuti della nuova dashboard per il nostro direttore? Proponga lei l'orario. Grazie, Pia",
+      "_atteso": {
+        "categoria": "cliente",
+        "priorita": 4
+      },
+      "mittente": {
+        "nome": "Pia Sgualdino",
+        "ruolo": "Account Director, Orbis S.p.A. (cliente top)",
+        "stakeholder": "cliente_strategico",
+        "reparto": "Cliente"
+      },
+      "ai": {
+        "categoria": "cliente",
+        "priorita": 4,
+        "riassunto": "Richiesta di demo di 45 minuti della nuova dashboard per il direttore del cliente top.",
+        "tasks": [
+          "Proporre orari per la demo la prossima settimana."
+        ],
+        "scadenza": null,
+        "richiesta_meeting": true,
+        "attende_risposta": true
+      },
+      "regola": "",
+      "sollecito": false,
+      "giorni": 0,
+      "slot": "30/11/2026 11:00-11:45",
+      "bozza_invito": "Oggetto: Demo nuova dashboard\n\nCiao Pia Sgualdino,\n\nTi propongo un incontro per la demo della nuova dashboard il giovedì 30/11/2026 dalle 11:00 alle 11:45 (online).\n\nFammi sapere se questo orario ti è congeniale.\n\nCordiali saluti,\nMarta Bella"
+    },
+    {
+      "id": "E7",
+      "da": "licenze@softvendor.example",
+      "data": "2026-11-25 12:00",
+      "oggetto": "Rinnovo licenze in scadenza",
+      "testo": "Gentile cliente, il contratto di licenza della piattaforma di monitoraggio scade il 1 dicembre 2026. Per evitare l'interruzione del servizio serve la firma del modulo di rinnovo allegato.",
+      "_atteso": {
+        "categoria": "amministrativo",
+        "priorita": 3
+      },
+      "mittente": {
+        "nome": "SoftVendor Licenze",
+        "ruolo": "Fornitore",
+        "stakeholder": "esterno",
+        "reparto": "Esterno"
+      },
+      "ai": {
+        "categoria": "amministrativo",
+        "priorita": 3,
+        "riassunto": "Richiesta di rinnovo licenza piattaforma di monitoraggio in scadenza.",
+        "tasks": [
+          "Verificare e firmare il modulo di rinnovo allegato."
+        ],
+        "scadenza": "2026-12-01",
+        "richiesta_meeting": false,
+        "attende_risposta": true
+      },
+      "regola": "",
+      "sollecito": true,
+      "giorni": 1
+    },
+    {
+      "id": "E8",
+      "da": "marco.mantegazza@nexa.example",
+      "data": "2026-11-26 08:40",
+      "oggetto": "Re: Go-live Orbis fase 2 - azioni aperte",
+      "testo": "Ricapitolo le azioni emerse ieri: 1) confermare con il cliente la data di go-live del 3 dicembre, 2) approvare il piano di rollback entro martedì, 3) avvisare il service desk del fermo di due ore. Marta, la prima e la seconda sono tue.",
+      "_atteso": {
+        "categoria": "interno",
+        "priorita": 4
+      },
+      "mittente": {
+        "nome": "Marco Mantegazza",
+        "ruolo": "Tech Lead",
+        "stakeholder": "collega",
+        "reparto": "Divisione Digital"
+      },
+      "ai": {
+        "categoria": "interno",
+        "priorita": 4,
+        "riassunto": "Ricapitolazione delle azioni aperte per il Go-live Orbis fase 2.",
+        "tasks": [
+          "Confermare con il cliente la data di go-live del 3 dicembre",
+          "Approvare il piano di rollback entro martedì"
+        ],
+        "scadenza": "2026-11-30",
+        "richiesta_meeting": false,
+        "attende_risposta": true
+      },
+      "regola": "",
+      "sollecito": false,
+      "giorni": 0
+    }
+  ],
+  "inviti": [
+    {
+      "id": "M1",
+      "organizzatore": "mario.arrigoni@nexa.example",
+      "titolo": "Allineamento strategico piano 2027",
+      "inizio": "2026-11-27 11:00",
+      "fine": "2026-11-27 12:00",
+      "invitati": [
+        "marta.bella@nexa.example"
+      ],
+      "n_invitati": 6,
+      "agenda": "Priorità 2027 della divisione, investimenti in AI, obiettivi di margine. Servono decisioni sui budget.",
+      "_atteso": {
+        "area": "strategico",
+        "criticita": 5
+      },
+      "organizzatore_info": {
+        "nome": "Mario Arrigoni",
+        "ruolo": "CEO",
+        "stakeholder": "ceo",
+        "reparto": "Direzione"
+      },
+      "ai": {
+        "area": "strategico",
+        "tipo": "decisionale",
+        "criticita": 5,
+        "presenza": "indispensabile",
+        "rimandabile": false,
+        "chiarezza_agenda": 4,
+        "decisioni_richieste": true,
+        "riassunto": "Riunione con il CEO per definire le priorità strategiche della divisione e gli investimenti in AI per il 2027. Saranno prese decisioni sui budget."
+      },
+      "punteggio": {
+        "totale": 100,
+        "voci": {
+          "Chi organizza": 40,
+          "Rilevanza per il tuo ruolo": 25,
+          "Criticità dell'agenda": 25,
+          "Presenza richiesta": 10,
+          "Urgenza": 8,
+          "Chiarezza dell'agenda": 3,
+          "Colleghi del reparto già invitati": 0,
+          "Conflitto e giornata già carica": -8,
+          "Platea ampia (oltre 15)": 0
+        },
+        "grezze": {
+          "stakeholder": 40,
+          "rilevanza": 25,
+          "criticita": 25,
+          "presenza": 10,
+          "urgenza": 8,
+          "chiarezza": 3,
+          "ridondanza": 0,
+          "conflitto": -8,
+          "platea": 0
+        },
+        "ridondanza": 0
+      },
+      "top": true,
+      "libera": true,
+      "candidato": null,
+      "proposta": "un altro orario",
+      "azione": "ACCETTA",
+      "motivo": "organizza CEO: presenza necessaria",
+      "giorno": "venerdì",
+      "controllo": "ok",
+      "bozza": "Ciao,\n\nConfermo la mia partecipazione alla riunione \"Allineamento strategico piano 2027\" di venerdì 27/11 alle ore 11:00.\n\nA presto,\n\nMarta Bella"
+    },
+    {
+      "id": "M2",
+      "organizzatore": "marco.mantegazza@nexa.example",
+      "titolo": "Weekly sync Frontend",
+      "inizio": "2026-11-30 10:00",
+      "fine": "2026-11-30 10:30",
+      "invitati": [
+        "marta.bella@nexa.example",
+        "marco.mantegazza@nexa.example",
+        "federico.saccente@nexa.example",
+        "mauro.colombo@nexa.example",
+        "roberto.rossi@nexa.example"
+      ],
+      "n_invitati": 5,
+      "agenda": "Stato dei ticket dello sprint, revisione dei componenti grafici, blocchi tecnici del team.",
+      "_atteso": {
+        "area": "tecnico",
+        "criticita": 2
+      },
+      "organizzatore_info": {
+        "nome": "Marco Mantegazza",
+        "ruolo": "Tech Lead",
+        "stakeholder": "collega",
+        "reparto": "Divisione Digital"
+      },
+      "ai": {
+        "area": "delivery",
+        "tipo": "operativo",
+        "criticita": 2,
+        "presenza": "opzionale",
+        "rimandabile": true,
+        "chiarezza_agenda": 3,
+        "decisioni_richieste": false,
+        "riassunto": "Riunione di sincronizzazione settimanale per il frontend focalizzata sullo stato dei ticket dello sprint, revisioni grafiche e blocchi tecnici."
+      },
+      "punteggio": {
+        "totale": 0,
+        "voci": {
+          "Chi organizza": 10,
+          "Rilevanza per il tuo ruolo": 25,
+          "Criticità dell'agenda": 10,
+          "Presenza richiesta": -10,
+          "Urgenza": -5,
+          "Chiarezza dell'agenda": 0,
+          "Colleghi del reparto già invitati": -21,
+          "Conflitto e giornata già carica": -20,
+          "Platea ampia (oltre 15)": 0
+        },
+        "grezze": {
+          "stakeholder": 10,
+          "rilevanza": 25,
+          "criticita": 10,
+          "presenza": -10,
+          "urgenza": -5,
+          "chiarezza": 0,
+          "ridondanza": -21,
+          "conflitto": -20,
+          "platea": 0
+        },
+        "ridondanza": 4
+      },
+      "top": false,
+      "libera": false,
+      "candidato": {
+        "nome": "Maria Enrica Vittoria Asti",
+        "ruolo": "Project Controller",
+        "seniority": "mid",
+        "fit": 95,
+        "fit_voci": {
+          "Competenza delivery": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (11 h)": 10,
+          "Occasione di crescita (junior)": 0
+        },
+        "carico": 11
+      },
+      "proposta": "30/11 alle 11:00",
+      "azione": "RIFIUTA",
+      "motivo": "punteggio 0/100, sovrapposto a «Workshop roadmap 2027», il team è già rappresentato da 4 colleghi: chiedo il verbale",
+      "giorno": "lunedì",
+      "controllo": "testo sicuro",
+      "bozza": "Buongiorno Marco,\nper «Weekly sync Frontend» il team è già ben rappresentato, quindi non parteciperò: mi mandate il verbale?\nGrazie,\nMarta Bella"
+    },
+    {
+      "id": "M3",
+      "organizzatore": "legale@orbis.example",
+      "titolo": "Revisione clausole SLA contratto Orbis",
+      "inizio": "2026-11-30 14:00",
+      "fine": "2026-11-30 15:00",
+      "invitati": [
+        "marta.bella@nexa.example"
+      ],
+      "n_invitati": 4,
+      "agenda": "Revisione delle penali e dei tempi di intervento previsti dal contratto di assistenza. Serve un interlocutore che possa approvare le modifiche.",
+      "_atteso": {
+        "area": "legale",
+        "criticita": 4
+      },
+      "organizzatore_info": {
+        "nome": "Ufficio Legale Orbis",
+        "ruolo": "Legale del cliente",
+        "stakeholder": "esterno",
+        "reparto": "Cliente"
+      },
+      "ai": {
+        "area": "legale",
+        "tipo": "decisionale",
+        "criticita": 4,
+        "presenza": "indispensabile",
+        "rimandabile": false,
+        "chiarezza_agenda": 3,
+        "decisioni_richieste": true,
+        "riassunto": "Riunione con il Legale di Ufficio Legale Orbis per revisionare le penali e i tempi di intervento del contratto di assistenza con Orbis. È necessaria una persona autorizzata a approvare eventuali modifiche."
+      },
+      "punteggio": {
+        "totale": 40,
+        "voci": {
+          "Chi organizza": 5,
+          "Rilevanza per il tuo ruolo": 5,
+          "Criticità dell'agenda": 20,
+          "Presenza richiesta": 10,
+          "Urgenza": 8,
+          "Chiarezza dell'agenda": 0,
+          "Colleghi del reparto già invitati": 0,
+          "Conflitto e giornata già carica": -8,
+          "Platea ampia (oltre 15)": 0
+        },
+        "grezze": {
+          "stakeholder": 5,
+          "rilevanza": 5,
+          "criticita": 20,
+          "presenza": 10,
+          "urgenza": 8,
+          "chiarezza": 0,
+          "ridondanza": 0,
+          "conflitto": -8,
+          "platea": 0
+        },
+        "ridondanza": 0
+      },
+      "top": false,
+      "libera": true,
+      "candidato": {
+        "nome": "Roberto Franco",
+        "ruolo": "Contract Specialist",
+        "seniority": "senior",
+        "fit": 95,
+        "fit_voci": {
+          "Competenza legale": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (9 h)": 10,
+          "Occasione di crescita (junior)": 0
+        },
+        "carico": 9
+      },
+      "proposta": "un altro orario",
+      "azione": "DELEGA",
+      "delegato": {
+        "nome": "Roberto Franco",
+        "ruolo": "Contract Specialist",
+        "seniority": "senior",
+        "fit": 95,
+        "fit_voci": {
+          "Competenza legale": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (9 h)": 10,
+          "Occasione di crescita (junior)": 0
+        },
+        "carico": 9
+      },
+      "motivo": "punteggio 40/100. Delego a Roberto Franco (Contract Specialist), fit 95/110",
+      "giorno": "lunedì",
+      "controllo": "ok",
+      "bozza": "Gentile Ufficio Legale Orbis,\n\nConfermo la ricezione della convocazione per la riunione del lunedì 30/11 alle 14:00.\n\nPer questa session, parteciperà al mio posto Roberto Franco (Contract Specialist), che è pienamente qualificata per prendere decisioni in merito. La metto in copia alla presente.\n\nCordiali saluti,\nMarta Bella"
+    },
+    {
+      "id": "M4",
+      "organizzatore": "marina.giori@nexa.example",
+      "titolo": "Budget review Q4 - Divisione Digital",
+      "inizio": "2026-11-27 15:00",
+      "fine": "2026-11-27 16:00",
+      "invitati": [
+        "marta.bella@nexa.example"
+      ],
+      "n_invitati": 5,
+      "agenda": "Consuntivo dei costi del quarto trimestre, scostamenti rispetto al budget, previsione di chiusura.",
+      "_atteso": {
+        "area": "finanziario",
+        "criticita": 3
+      },
+      "organizzatore_info": {
+        "nome": "Marina Giori",
+        "ruolo": "Group Controller",
+        "stakeholder": "manager",
+        "reparto": "Finance"
+      },
+      "ai": {
+        "area": "finanziario",
+        "tipo": "decisionale",
+        "criticita": 3,
+        "presenza": "opzionale",
+        "rimandabile": false,
+        "chiarezza_agenda": 4,
+        "decisioni_richieste": true,
+        "riassunto": "Riunione di revisioni del budget per il Q4 organizzata da Marina Giori (Group Controller). L'obiettivo è esaminare i costi effettivi del quarto trimestre, analizzare gli scostamenti rispetto al budget e definire le previsioni per la chiusura finanziaria."
+      },
+      "punteggio": {
+        "totale": 41,
+        "voci": {
+          "Chi organizza": 20,
+          "Rilevanza per il tuo ruolo": 25,
+          "Criticità dell'agenda": 15,
+          "Presenza richiesta": -10,
+          "Urgenza": 8,
+          "Chiarezza dell'agenda": 3,
+          "Colleghi del reparto già invitati": 0,
+          "Conflitto e giornata già carica": -20,
+          "Platea ampia (oltre 15)": 0
+        },
+        "grezze": {
+          "stakeholder": 20,
+          "rilevanza": 25,
+          "criticita": 15,
+          "presenza": -10,
+          "urgenza": 8,
+          "chiarezza": 3,
+          "ridondanza": 0,
+          "conflitto": -20,
+          "platea": 0
+        },
+        "ridondanza": 0
+      },
+      "top": false,
+      "libera": false,
+      "candidato": {
+        "nome": "Maria Enrica Vittoria Asti",
+        "ruolo": "Project Controller",
+        "seniority": "mid",
+        "fit": 95,
+        "fit_voci": {
+          "Competenza finanziario": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (11 h)": 10,
+          "Occasione di crescita (junior)": 0
+        },
+        "carico": 11
+      },
+      "proposta": "27/11 alle 16:00",
+      "azione": "DELEGA",
+      "delegato": {
+        "nome": "Maria Enrica Vittoria Asti",
+        "ruolo": "Project Controller",
+        "seniority": "mid",
+        "fit": 95,
+        "fit_voci": {
+          "Competenza finanziario": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (11 h)": 10,
+          "Occasione di crescita (junior)": 0
+        },
+        "carico": 11
+      },
+      "motivo": "punteggio 41/100, sovrapposto a «Steering interno». Delego a Maria Enrica Vittoria Asti (Project Controller), fit 95/110",
+      "giorno": "venerdì",
+      "controllo": "ok",
+      "bozza": "Gentile Marina Giori,\n\nConfermo la ricezione della convocazione per la riunione \"Budget review Q4 - Divisione Digital\" di venerdì 27/11 alle 15:00.\n\nPer questa session, parteciperà al mio posto Maria Enrica Vittoria Asti (Project Controller), che è pienamente in grado di prendere decisioni in merito. Lo metto in copia per conoscenza.\n\nCordiali saluti,\nMarta Bella"
+    },
+    {
+      "id": "M5",
+      "organizzatore": "eventi@ticketpro.example",
+      "titolo": "Webinar: le novità del tool di ticketing",
+      "inizio": "2026-11-30 16:00",
+      "fine": "2026-11-30 17:00",
+      "invitati": [
+        "marta.bella@nexa.example"
+      ],
+      "n_invitati": 40,
+      "agenda": "Presentazione delle nuove funzioni del prodotto, demo dal vivo e domande.",
+      "_atteso": {
+        "area": "tecnico",
+        "criticita": 1
+      },
+      "organizzatore_info": {
+        "nome": "TicketPro Eventi",
+        "ruolo": "Fornitore",
+        "stakeholder": "esterno",
+        "reparto": "Esterno"
+      },
+      "ai": {
+        "area": "tecnico",
+        "tipo": "informativo",
+        "criticita": 1,
+        "presenza": "opzionale",
+        "rimandabile": true,
+        "chiarezza_agenda": 3,
+        "decisioni_richieste": false,
+        "riassunto": "Webinar informativo sul tool di ticketing da parte del fornitore TicketPro Eventi."
+      },
+      "punteggio": {
+        "totale": 0,
+        "voci": {
+          "Chi organizza": 5,
+          "Rilevanza per il tuo ruolo": 5,
+          "Criticità dell'agenda": 5,
+          "Presenza richiesta": -10,
+          "Urgenza": -5,
+          "Chiarezza dell'agenda": 0,
+          "Colleghi del reparto già invitati": 0,
+          "Conflitto e giornata già carica": -8,
+          "Platea ampia (oltre 15)": -10
+        },
+        "grezze": {
+          "stakeholder": 5,
+          "rilevanza": 5,
+          "criticita": 5,
+          "presenza": -10,
+          "urgenza": -5,
+          "chiarezza": 0,
+          "ridondanza": 0,
+          "conflitto": -8,
+          "platea": -10
+        },
+        "ridondanza": 0
+      },
+      "top": false,
+      "libera": true,
+      "candidato": {
+        "nome": "Federico Saccente",
+        "ruolo": "Junior Developer",
+        "seniority": "junior",
+        "fit": 110,
+        "fit_voci": {
+          "Competenza tecnico": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (6 h)": 10,
+          "Occasione di crescita (junior)": 15
+        },
+        "carico": 6
+      },
+      "proposta": "un altro orario",
+      "azione": "DELEGA",
+      "delegato": {
+        "nome": "Federico Saccente",
+        "ruolo": "Junior Developer",
+        "seniority": "junior",
+        "fit": 110,
+        "fit_voci": {
+          "Competenza tecnico": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (6 h)": 10,
+          "Occasione di crescita (junior)": 15
+        },
+        "carico": 6
+      },
+      "motivo": "punteggio 0/100. Delego a Federico Saccente (Junior Developer), fit 110/110",
+      "giorno": "lunedì",
+      "controllo": "ok",
+      "bozza": "Gentile TicketPro Eventi,\n\nConfermo la nostra partecipazione al webinar di lunedì 30/11 alle ore 16:00. Sarà presente Federico Saccente per rappresentarci, in quanto possiede le competenze necessarie per prendere decisioni.\n\nCordiali saluti,\nMarta Bella"
+    },
+    {
+      "id": "M6",
+      "organizzatore": "p.sgualdino@orbis.example",
+      "titolo": "Steering Committee progetto Orbis",
+      "inizio": "2026-11-27 09:00",
+      "fine": "2026-11-27 10:00",
+      "invitati": [
+        "marta.bella@nexa.example"
+      ],
+      "n_invitati": 7,
+      "agenda": "Avanzamento del progetto, rischi del go-live, decisione sulla data di rilascio della fase 2.",
+      "_atteso": {
+        "area": "delivery",
+        "criticita": 5
+      },
+      "organizzatore_info": {
+        "nome": "Pia Sgualdino",
+        "ruolo": "Account Director, Orbis S.p.A. (cliente top)",
+        "stakeholder": "cliente_strategico",
+        "reparto": "Cliente"
+      },
+      "ai": {
+        "area": "strategico",
+        "tipo": "decisionale",
+        "criticita": 4,
+        "presenza": "indispensabile",
+        "rimandabile": false,
+        "chiarezza_agenda": 3,
+        "decisioni_richieste": true,
+        "riassunto": "Riunione di Steering Committee con il cliente top Orbis S.p.A. per discutere l'avanzamento del progetto Orbis, i rischi relativi al go-live e prendere una decisione sulla data di rilascio della fase 2."
+      },
+      "punteggio": {
+        "totale": 78,
+        "voci": {
+          "Chi organizza": 35,
+          "Rilevanza per il tuo ruolo": 25,
+          "Criticità dell'agenda": 20,
+          "Presenza richiesta": 10,
+          "Urgenza": 8,
+          "Chiarezza dell'agenda": 0,
+          "Colleghi del reparto già invitati": 0,
+          "Conflitto e giornata già carica": -20,
+          "Platea ampia (oltre 15)": 0
+        },
+        "grezze": {
+          "stakeholder": 35,
+          "rilevanza": 25,
+          "criticita": 20,
+          "presenza": 10,
+          "urgenza": 8,
+          "chiarezza": 0,
+          "ridondanza": 0,
+          "conflitto": -20,
+          "platea": 0
+        },
+        "ridondanza": 0
+      },
+      "top": true,
+      "libera": false,
+      "candidato": null,
+      "proposta": "27/11 alle 10:00",
+      "azione": "RILANCIA",
+      "motivo": "stakeholder chiave ma sovrapposto a «1:1 con il Tech Lead»: propongo 27/11 alle 10:00",
+      "giorno": "venerdì",
+      "controllo": "ok",
+      "bozza": "Ciao Pia Sgualdino,\n\nGrazie per aver organizzato la riunione del progetto Orbis. Purtroppo venerdì alle 9:00 sono già impegnata. Potremmo spostarla a venerdì alle 10:00? Fammi sapere se va bene.\n\nCordiali saluti,\nMarta Bella"
+    },
+    {
+      "id": "M7",
+      "organizzatore": "luca.fallica@nexa.example",
+      "titolo": "Allineamento veloce",
+      "inizio": "2026-11-30 12:00",
+      "fine": "2026-11-30 12:30",
+      "invitati": [
+        "marta.bella@nexa.example",
+        "luca.fallica@nexa.example"
+      ],
+      "n_invitati": 2,
+      "agenda": "Vediamoci un attimo per fare il punto.",
+      "_atteso": {
+        "area": "delivery",
+        "criticita": 2,
+        "chiarezza_agenda": 1
+      },
+      "organizzatore_info": {
+        "nome": "Luca Fallica",
+        "ruolo": "PMO",
+        "stakeholder": "collega",
+        "reparto": "Divisione Digital"
+      },
+      "ai": {
+        "area": "delivery",
+        "tipo": "operativo",
+        "criticita": 2,
+        "presenza": "opzionale",
+        "rimandabile": true,
+        "chiarezza_agenda": 1,
+        "decisioni_richieste": false,
+        "riassunto": "Riunione di allineamento veloce con agenda molto vaga. Non è richiesta la sua presenza se non strettamente necessaria per un punto specifico."
+      },
+      "punteggio": {
+        "totale": 9,
+        "voci": {
+          "Chi organizza": 10,
+          "Rilevanza per il tuo ruolo": 25,
+          "Criticità dell'agenda": 10,
+          "Presenza richiesta": -10,
+          "Urgenza": -5,
+          "Chiarezza dell'agenda": -6,
+          "Colleghi del reparto già invitati": -7,
+          "Conflitto e giornata già carica": -8,
+          "Platea ampia (oltre 15)": 0
+        },
+        "grezze": {
+          "stakeholder": 10,
+          "rilevanza": 25,
+          "criticita": 10,
+          "presenza": -10,
+          "urgenza": -5,
+          "chiarezza": -6,
+          "ridondanza": -7,
+          "conflitto": -8,
+          "platea": 0
+        },
+        "ridondanza": 1
+      },
+      "top": false,
+      "libera": true,
+      "candidato": {
+        "nome": "Maria Enrica Vittoria Asti",
+        "ruolo": "Project Controller",
+        "seniority": "mid",
+        "fit": 95,
+        "fit_voci": {
+          "Competenza delivery": 40,
+          "Autonomia adatta alla criticità": 25,
+          "Libero a quell'ora": 20,
+          "Carico settimanale (11 h)": 10,
+          "Occasione di crescita (junior)": 0
+        },
+        "carico": 11
+      },
+      "proposta": "un altro orario",
+      "azione": "RILANCIA",
+      "variante": "agenda",
+      "motivo": "agenda vaga (chiarezza 1/5): chiedo agenda e obiettivo prima di decidere",
+      "giorno": "lunedì",
+      "controllo": "testo sicuro",
+      "bozza": "Buongiorno Luca,\nper «Allineamento veloce» prima di confermare mi mandi l'agenda e l'obiettivo dell'incontro?\nGrazie,\nMarta Bella"
+    }
+  ],
+  "digest": "Ecco il riassunto da leggere a fine giornata:\n\n* **Trend AI 2027 (Azienda 4):** I focus principali includono agenti AI nei processi aziendali, modelli locali per la privacy e l'impatto delle regole europeee sull'AI.\n* **Welfare 2027:** Sono attive nuove convenzioni welfare dal 1 gennaio relative a palestre, trasporto pubblico e buoni libri (dettagli su portale HR)."
+}

@@ -1,0 +1,201 @@
+{
+  "oggi": "2026-11-26",
+  "utente": {
+    "nome": "Marta Bella",
+    "email": "marta.bella@nexa.example",
+    "ruolo": "Direttrice Delivery",
+    "reparto": "Divisione Digital",
+    "aree": [
+      "strategico",
+      "delivery",
+      "finanziario"
+    ],
+    "calendario": [
+      {
+        "inizio": "2026-11-27 09:00",
+        "fine": "2026-11-27 10:00",
+        "titolo": "1:1 con il Tech Lead"
+      },
+      {
+        "inizio": "2026-11-27 15:00",
+        "fine": "2026-11-27 16:00",
+        "titolo": "Steering interno"
+      },
+      {
+        "inizio": "2026-11-30 09:00",
+        "fine": "2026-11-30 11:00",
+        "titolo": "Workshop roadmap 2027"
+      }
+    ]
+  },
+  "team": [
+    {
+      "nome": "Marco Mantegazza",
+      "email": "marco.mantegazza@nexa.example",
+      "ruolo": "Tech Lead",
+      "seniority": "senior",
+      "competenze": [
+        "tecnico",
+        "delivery"
+      ],
+      "occupato": [
+        {
+          "inizio": "2026-11-27 09:00",
+          "fine": "2026-11-27 10:00"
+        }
+      ],
+      "carico_settimanale_h": 14
+    },
+    {
+      "nome": "Federico Saccente",
+      "email": "federico.saccente@nexa.example",
+      "ruolo": "Junior Developer",
+      "seniority": "junior",
+      "competenze": [
+        "tecnico"
+      ],
+      "occupato": [
+        {
+          "inizio": "2026-11-27 11:00",
+          "fine": "2026-11-27 12:00"
+        }
+      ],
+      "carico_settimanale_h": 6
+    },
+    {
+      "nome": "Roberto Franco",
+      "email": "roberto.franco@nexa.example",
+      "ruolo": "Contract Specialist",
+      "seniority": "senior",
+      "competenze": [
+        "legale"
+      ],
+      "occupato": [
+        {
+          "inizio": "2026-11-30 10:00",
+          "fine": "2026-11-30 12:00"
+        }
+      ],
+      "carico_settimanale_h": 9
+    },
+    {
+      "nome": "Maria Enrica Vittoria Asti",
+      "email": "maria.asti@nexa.example",
+      "ruolo": "Project Controller",
+      "seniority": "mid",
+      "competenze": [
+        "finanziario",
+        "delivery"
+      ],
+      "occupato": [
+        {
+          "inizio": "2026-11-27 09:00",
+          "fine": "2026-11-27 10:00"
+        }
+      ],
+      "carico_settimanale_h": 11
+    },
+    {
+      "nome": "Mauro Colombo",
+      "email": "mauro.colombo@nexa.example",
+      "ruolo": "Frontend Developer",
+      "seniority": "mid",
+      "competenze": [
+        "tecnico"
+      ],
+      "occupato": [],
+      "carico_settimanale_h": 8
+    },
+    {
+      "nome": "Roberto Rossi",
+      "email": "roberto.rossi@nexa.example",
+      "ruolo": "UX Designer",
+      "seniority": "mid",
+      "competenze": [
+        "tecnico"
+      ],
+      "occupato": [],
+      "carico_settimanale_h": 7
+    }
+  ],
+  "rubrica": {
+    "mario.arrigoni@nexa.example": {
+      "nome": "Mario Arrigoni",
+      "ruolo": "CEO",
+      "stakeholder": "ceo",
+      "reparto": "Direzione"
+    },
+    "marina.giori@nexa.example": {
+      "nome": "Marina Giori",
+      "ruolo": "Group Controller",
+      "stakeholder": "manager",
+      "reparto": "Finance"
+    },
+    "p.sgualdino@orbis.example": {
+      "nome": "Pia Sgualdino",
+      "ruolo": "Account Director, Orbis S.p.A. (cliente top)",
+      "stakeholder": "cliente_strategico",
+      "reparto": "Cliente"
+    },
+    "legale@orbis.example": {
+      "nome": "Ufficio Legale Orbis",
+      "ruolo": "Legale del cliente",
+      "stakeholder": "esterno",
+      "reparto": "Cliente"
+    },
+    "eventi@ticketpro.example": {
+      "nome": "TicketPro Eventi",
+      "ruolo": "Fornitore",
+      "stakeholder": "esterno",
+      "reparto": "Esterno"
+    },
+    "newsletter@digitalweekly.example": {
+      "nome": "Digital Weekly",
+      "ruolo": "Newsletter",
+      "stakeholder": "esterno",
+      "reparto": "Esterno"
+    },
+    "hr@nexa.example": {
+      "nome": "HR Nexa",
+      "ruolo": "Risorse Umane",
+      "stakeholder": "collega",
+      "reparto": "HR"
+    },
+    "licenze@softvendor.example": {
+      "nome": "SoftVendor Licenze",
+      "ruolo": "Fornitore",
+      "stakeholder": "esterno",
+      "reparto": "Esterno"
+    },
+    "luca.fallica@nexa.example": {
+      "nome": "Luca Fallica",
+      "ruolo": "PMO",
+      "stakeholder": "collega",
+      "reparto": "Divisione Digital"
+    },
+    "marco.mantegazza@nexa.example": {
+      "nome": "Marco Mantegazza",
+      "ruolo": "Tech Lead",
+      "stakeholder": "collega",
+      "reparto": "Divisione Digital"
+    },
+    "federico.saccente@nexa.example": {
+      "nome": "Federico Saccente",
+      "ruolo": "Junior Developer",
+      "stakeholder": "collega",
+      "reparto": "Divisione Digital"
+    },
+    "mauro.colombo@nexa.example": {
+      "nome": "Mauro Colombo",
+      "ruolo": "Frontend Developer",
+      "stakeholder": "collega",
+      "reparto": "Divisione Digital"
+    },
+    "roberto.rossi@nexa.example": {
+      "nome": "Roberto Rossi",
+      "ruolo": "UX Designer",
+      "stakeholder": "collega",
+      "reparto": "Divisione Digital"
+    }
+  }
+}
