@@ -167,6 +167,7 @@ input[type=range]{accent-color:var(--acc);width:120px}
   .ev .t{display:flex}
   .nav .chip{display:none}
 }
+.bozza[contenteditable="true"]{outline:2px solid var(--acc);outline-offset:4px;border-radius:10px;cursor:text}
 </style>
 </head>
 <body>
@@ -186,7 +187,7 @@ input[type=range]{accent-color:var(--acc);width:120px}
       <h1 id="h1"></h1>
       <p class="msg" id="msg"></p>
       <div class="kp">
-        <div class="glass"><div class="lab"><span>Riunioni gestite dall'assistente</span></div><div class="v" id="gest"></div><div class="seg" id="seg"></div></div>
+        <div class="glass"><div class="lab"><span>Riunioni già sistemate</span></div><div class="v" id="gest"></div><div class="seg" id="seg"></div></div>
         <div class="glass"><div class="lab"><span>Email da guardare oggi</span></div><div class="v" id="sub5"></div></div>
       </div>
     </div>
@@ -260,9 +261,9 @@ if(IMG.logo)$('#logo').innerHTML=`<img src="${IMG.logo}" alt="Linkin Prompt" sty
 const SC=IMG.scene||{};if(SC.apertura)$('#hero').style.backgroundImage=`url(${SC.apertura})`;if(SC.tempo)$('#tempo').style.backgroundImage=`url(${SC.tempo})`;if(SC.motore)$('#motore').style.setProperty('--motore',`url(${SC.motore})`);
 $('#sub').textContent=`${oggi.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'})} · ${P.utente.ruolo} · dati simulati`;
 function riepilogo(){const nLib=inviti.filter(lib).length;oreLib=inviti.filter(lib).reduce((s,i)=>s+dur(i),0);
-$('#gest').innerHTML=`${nLib}<small>su ${inviti.length}</small>`;
+const nOk=inviti.filter(i=>stato(i)[1]).length;$('#gest').innerHTML=`${nOk}<small>su ${inviti.length}${nOk<nLib?` · ${nLib-nOk} da approvare`:''}</small>`;
 $('#chi').innerHTML=inviti.filter(lib).map(i=>i.azione==='DELEGA'?`<div class="pchip">${avatar(i.delegato.nome)}<span><b>${esc(i.delegato.nome.split(' ')[0])}</b> · ${esc(i.titolo.split(/[:\-–]/)[0].trim())}${i.delegato.seniority==='junior'?' · per crescere':''}</span></div>`:`<div class="pchip"><div class="av" style="background:rgba(255,255,255,.12);color:#fff">✕</div><span><b>Rifiutata</b> · ${esc(i.titolo)} · chiesto il verbale</span></div>`).join('');
-$('#seg').innerHTML=inviti.map(i=>`<i class="${lib(i)?'on':''}"></i>`).join('');}
+$('#seg').innerHTML=inviti.map(i=>`<i class="${stato(i)[1]?'on':''}"></i>`).join('');}
 riepilogo();
 $('#sub5').innerHTML=`${lavoro.filter(e=>e.ai.priorita>=4||e.sollecito).length}<small>email · ${lavoro.filter(e=>e.sollecito).length} aspettano risposta</small>`;
 
@@ -306,9 +307,9 @@ function voci(i){const g=i.punteggio.grezze||{},lab=i.punteggio.voci||{},ks=Obje
 
 /* ---- riunioni ---- */
 function stato(i){const A=$('#aA').checked,D=$('#aD').checked,Rf=$('#aR').checked,S=+$('#sog').value;
-  if(inviati.has(i.id))return['Inviata da te',1];
+  if(inviati.has(i.id))return['Inviata da te',2];
   if(TOP.includes(i.organizzatore_info.stakeholder))return['Serve il tuo ok · stakeholder chiave',0];
-  if((i.azione==='ACCETTA'&&A)||(i.azione==='DELEGA'&&D)||(i.azione==='RIFIUTA'&&Rf&&i.punteggio.totale<S))return['Gestita da sola, nei tuoi limiti',1];
+  if((i.azione==='ACCETTA'&&A)||(i.azione==='DELEGA'&&D)||(i.azione==='RIFIUTA'&&Rf&&i.punteggio.totale<S)||(i.azione==='RILANCIA'&&i.variante==='agenda'&&A))return['Gestita da sola, nei tuoi limiti',1];
   return['Aspetta il tuo ok',0]}
 let filtro='tutte';
 function riunioni(){
@@ -320,13 +321,19 @@ function riunioni(){
     const tags=`<span class="tag ${lib(i)?'acc':'w'}">${agenda?'Chiede l’agenda':LAB[i.azione]}</span>`+(i.azione==='RILANCIA'&&!agenda?`<span class="tag">${esc(i.proposta)}</span>`:'')+dele;
     return `<div class="card mcard" data-id="${i.id}" data-q="${esc([i.titolo,o.nome,(i.delegato||{}).nome||'',LAB[i.azione]||'',i.motivo||''].join(' ').toLowerCase())}">
       <div class="mtop">${avatar(o.nome,'big')}<div class="who"><b>${esc(o.nome)}</b>${GG[a.getDay()]} ${a.getDate()}/${a.getMonth()+1} · ${hm(a)}–${hm(b)}</div>
-        <div class="ibtn"><span class="ic ${au?'ok':''}" title="${esc(st)}">✓</span><span class="ic" title="Bozza">✎</span></div></div>
+        <div class="ibtn"><span class="ic ${au?'ok':''}" title="${au?esc(st):'Approva e invia'}" ${au?'':`data-ok="${i.id}"`} style="cursor:pointer">✓</span><span class="ic" title="Modifica la bozza" data-edit="${i.id}" style="cursor:pointer">✎</span></div></div>
       <div class="ttl">${esc(i.titolo)}</div>
-      <div class="mbot"><div><div class="tags">${tags}</div><div class="stato ${au?'auto':''}">● ${au?'fatta in automatico':'la approvi tu'}</div></div>
+      <div class="mbot"><div><div class="tags">${tags}</div><div class="stato ${au?'auto':''}">● ${au===2?'inviata da te':au?'fatta in automatico':'la approvi tu'}</div></div>
         <div class="ring">${anello(i.punteggio.totale,lib(i)?'#ff6b2c':'#f4f4f5')}<b>${i.punteggio.totale}<small>importanza</small></b></div></div>
       <div class="more"><div class="why">${esc(i.motivo)}</div>${voci(i)}<div class="bozza">${esc(i.bozza)}</div>
-      <div class="btns"><button class="btn p" data-ok="${i.id}" ${au?'disabled':''}>${au?'Fatto ✓':'Approva e invia'}</button><button class="btn">Modifica</button></div></div></div>`}).join('');
-  document.querySelectorAll('#meet .card').forEach(c=>c.onclick=e=>{if(e.target.dataset.ok){inviati.add(e.target.dataset.ok);riunioni();return}if(e.target.tagName!=='BUTTON')c.classList.toggle('open')});
+      <div class="btns"><button class="btn p" data-ok="${i.id}" ${au?'disabled':''}>${au===2?'Inviata ✓':au?'Fatto ✓':'Approva e invia'}</button><button class="btn" data-edit="${i.id}">Modifica</button></div></div></div>`}).join('');
+  document.querySelectorAll('#meet .card').forEach(c=>c.onclick=e=>{const t=e.target;
+    if(t.dataset.ok){inviati.add(t.dataset.ok);riunioni();return}
+    if(t.dataset.edit){const i=inviti.find(x=>x.id===t.dataset.edit),bz=c.querySelector('.bozza'),bt=c.querySelector('.btn[data-edit]');c.classList.add('open');
+      if(bz.isContentEditable){i.bozza=bz.innerText;bz.contentEditable='false';bt.textContent='Modifica'}else{bz.contentEditable='true';bz.focus();bt.textContent='Salva'}return}
+    if(t.closest('.bozza[contenteditable="true"]'))return;
+    if(t.tagName!=='BUTTON')c.classList.toggle('open')});
+  riepilogo();
   riempi();
 }
 function riempi(){const t0=performance.now(),arcs=[...document.querySelectorAll('.arc')];
@@ -389,6 +396,11 @@ $('#q').addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(tq);filt
 /* dentro la pagina principale (iframe di Streamlit) il riquadro prende l'altezza vera: niente taglio né doppio scorrimento */
 if(window.frameElement){const fit=()=>{try{window.frameElement.style.height=document.documentElement.scrollHeight+'px'}catch(e){}};
   try{new ResizeObserver(fit).observe(document.body)}catch(e){};window.addEventListener('load',fit);setTimeout(fit,300);fit()}
+document.querySelector('a.chip').addEventListener('click',e=>{if(!window.frameElement)return;e.preventDefault();
+  try{const p=window.parent.document,sb=()=>p.querySelector('[data-testid="stSidebar"]'),r=sb()&&sb().getBoundingClientRect();
+    if(!(r&&r.x>=0&&r.width>100)){const b=p.querySelector('[data-testid="stExpandSidebarButton"],[data-testid="stSidebarCollapsedControl"] button');b&&b.click()}
+    setTimeout(()=>{const s=sb();if(s){s.style.transition='box-shadow .3s';s.style.boxShadow='inset 0 0 0 3px #ff6b2c';setTimeout(()=>s.style.boxShadow='',1600)}},350)}
+  catch(x){window.open('/','_blank')}});
 document.querySelectorAll('.pills span').forEach(s=>s.onclick=()=>{document.querySelectorAll('.pills span').forEach(x=>x.classList.remove('on'));s.classList.add('on');
   if(s.dataset.v==='top')window.scrollTo({top:0,behavior:'smooth'});else document.getElementById(s.dataset.v).scrollIntoView({behavior:'smooth',block:'start'})});
 
