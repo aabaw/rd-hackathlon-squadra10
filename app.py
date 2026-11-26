@@ -15,10 +15,11 @@ import engine
 import llm
 import vista
 
-st.set_page_config(page_title="Linkin Prompt", page_icon="🎸", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Linkin Prompt", page_icon="🎸", layout="wide", initial_sidebar_state="auto")
 st.markdown("""<style>
 .stApp{background:#000}
 header[data-testid="stHeader"]{background:transparent}
+[data-testid="stToolbar"]{visibility:hidden}
 .block-container{padding:0!important;max-width:100%!important}
 </style>""", unsafe_allow_html=True)
 

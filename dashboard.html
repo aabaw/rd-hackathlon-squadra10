@@ -159,6 +159,14 @@ input[type=range]{accent-color:var(--acc);width:120px}
 #pesi input[type=range]{width:130px}
 @media (max-width:980px){.hero,.tempo{padding:26px;background-position:70% center}.hero::before,.tempo::before{background:linear-gradient(0deg,rgba(11,11,12,.96) 0%,rgba(11,11,12,.7) 55%,rgba(11,11,12,.2) 100%)}}
 @media (max-width:560px){.wrap{padding:14px 14px 50px}.kp{flex-direction:column}.sec h2{font-size:24px}.grid{grid-template-columns:1fr}.pills{display:none}.ev .t{display:none}.ev{padding-right:6px}.dayhead .play{width:100%;justify-content:center}}
+/* telefono: la settimana diventa un elenco leggibile, senza l'asse delle ore */
+@media (max-width:560px){
+  .scale,.now,.ev.mio{display:none}
+  .bar{height:auto;display:flex;flex-direction:column;gap:8px;padding:10px;background:transparent;overflow:visible}
+  .ev{position:static!important;left:auto!important;width:auto!important;height:52px;padding-right:14px}
+  .ev .t{display:flex}
+  .nav .chip{display:none}
+}
 </style>
 </head>
 <body>
@@ -378,6 +386,9 @@ function filtra(scorri){const v=($('#q').value||'').toLowerCase().trim();let n=0
 $('#q').addEventListener('input',()=>{filtra(false);clearTimeout(tq);tq=setTimeout(()=>filtra(true),600)});
 $('#q').addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(tq);filtra(true)}if(e.key==='Escape'){e.target.value='';filtra(false)}});
 {const _r=riunioni,_p=posta;riunioni=function(){_r.apply(this,arguments);filtra(false)};posta=function(){_p.apply(this,arguments);filtra(false)}}
+/* dentro la pagina principale (iframe di Streamlit) il riquadro prende l'altezza vera: niente taglio né doppio scorrimento */
+if(window.frameElement){const fit=()=>{try{window.frameElement.style.height=document.documentElement.scrollHeight+'px'}catch(e){}};
+  try{new ResizeObserver(fit).observe(document.body)}catch(e){};window.addEventListener('load',fit);setTimeout(fit,300);fit()}
 document.querySelectorAll('.pills span').forEach(s=>s.onclick=()=>{document.querySelectorAll('.pills span').forEach(x=>x.classList.remove('on'));s.classList.add('on');
   if(s.dataset.v==='top')window.scrollTo({top:0,behavior:'smooth'});else document.getElementById(s.dataset.v).scrollIntoView({behavior:'smooth',block:'start'})});
 
